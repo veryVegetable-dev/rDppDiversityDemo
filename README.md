@@ -1,1 +1,4 @@
 # rDppDiversityDemo
+
+$\alpha$
+$\beta$
