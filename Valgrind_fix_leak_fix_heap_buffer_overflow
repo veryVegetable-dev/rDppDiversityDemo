@@ -1,0 +1,121 @@
+==42100== Memcheck, a memory error detector
+==42100== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==42100== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==42100== Command: /usr/lib/R/bin/exec/R --vanilla
+==42100== 
+
+R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "rDppDiversity"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('rDppDiversity')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("bestSubset")
+> ### * bestSubset
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: bestSubset
+> ### Title: Given item set, item representation vector, and item ratings,
+> ###   find a subset with better relevance-diversity trade-off.
+> ### Aliases: bestSubset
+> 
+> ### ** Examples
+> 
+> library(rDppDiversity)
+> bestSubset(matrix(c(-0.1, -0.15, 0.2, 0.3, -0.2, -0.3), nrow=3, ncol=2, byrow=TRUE), c(1, 2, 3), 3)
+  id      gain
+1  2 0.1570038
+> 
+> 
+> 
+> cleanEx()
+> nameEx("learnItemEmb")
+> ### * learnItemEmb
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: learnItemEmb
+> ### Title: Machine learning algorithm to learn item representations
+> ###   maximizing log likelihood under DPP assumption.
+> ### Aliases: learnItemEmb
+> 
+> ### ** Examples
+> 
+> library(rDppDiversity)
+> data_path=system.file("extdata", "data.txt", package = "rDppDiversity")
+> learnItemEmb(data_path, 3, 0.1, 0.01, 0, 10)
+[[1]]
+           [,1]      [,2]       [,3]
+[1,]  0.7596145 -0.958674  0.6650079
+[2,] -7.9858499 -2.783571 -2.5754149
+[3,]  9.1449127  3.571613  3.1264818
+
+[[2]]
+[1] "0" "1" "2"
+
+[[3]]
+ [1] -0.10160746 -0.84073240 -1.04487526 -1.11527991 -1.13219833 -0.87779570
+ [7] -0.90321791 -0.90662277 -0.89535838 -0.87383318 -0.71268916 -0.69828719
+[13] -0.67656654 -0.64910072 -0.61704320 -0.49061546 -0.46359134 -0.43274772
+[19] -0.39869076 -0.36190468 -0.25362012 -0.22065878 -0.18526570 -0.14774658
+[25] -0.10835781 -0.01126598  0.02505871  0.06311234  0.10271562  0.14371270
+[31]  0.23317696  0.27162820  0.31139761  0.35236853  0.39443788  0.47834805
+[37]  0.51824594  0.55919737  0.60112107  0.64394462  0.72361553  0.76454937
+[43]  0.80635446  0.84897172  0.89234626  0.96866655  1.01037228  1.05281699
+[49]  1.09595656  1.13974833
+
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  12.729 0.073 12.803 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
+==42100== 
+==42100== HEAP SUMMARY:
+==42100==     in use at exit: 56,471,788 bytes in 12,053 blocks
+==42100==   total heap usage: 32,163 allocs, 20,110 frees, 97,471,684 bytes allocated
+==42100== 
+==42100== LEAK SUMMARY:
+==42100==    definitely lost: 0 bytes in 0 blocks
+==42100==    indirectly lost: 0 bytes in 0 blocks
+==42100==      possibly lost: 0 bytes in 0 blocks
+==42100==    still reachable: 56,471,788 bytes in 12,053 blocks
+==42100==         suppressed: 0 bytes in 0 blocks
+==42100== Reachable blocks (those to which a pointer was found) are not shown.
+==42100== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==42100== 
+==42100== For lists of detected and suppressed errors, rerun with: -s
+==42100== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

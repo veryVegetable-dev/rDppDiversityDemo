@@ -1,0 +1,148 @@
+R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "rDppDiversity"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('rDppDiversity')
+>
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("bestSubset")
+> ### * bestSubset
+>
+> flush(stderr()); flush(stdout())
+>
+> ### Name: bestSubset
+> ### Title: Given item set, item representation vector, and item ratings,
+> ###   find a subset with better relevance-diversity trade-off.
+> ### Aliases: bestSubset
+>
+> ### ** Examples
+>
+> library(rDppDiversity)
+> bestSubset(matrix(c(-0.1, -0.15, 0.2, 0.3, -0.2, -0.3), nrow=3, ncol=2, byrow=TRUE), c(1, 2, 3), 3)
+  id      gain
+1  2 0.1570038
+>
+>
+>
+> cleanEx()
+> nameEx("learnItemEmb")
+> ### * learnItemEmb
+>
+> flush(stderr()); flush(stdout())
+>
+> ### Name: learnItemEmb
+> ### Title: Machine learning algorithm to learn item representations
+> ###   maximizing log likelihood under DPP assumption.
+> ### Aliases: learnItemEmb
+>
+> ### ** Examples
+>
+> library(rDppDiversity)
+> data_path=system.file("extdata", "data.txt", package = "rDppDiversity")
+> learnItemEmb(data_path, 3, 0.1, 0.01, 0, 10)
+=================================================================
+==209851==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x606000003894 at pc 0x7f9f42e01d96 bp 0x7ffc146d82b0 sp 0x7ffc146d82a0
+READ of size 4 at 0x606000003894 thread T0
+    #0 0x7f9f42e01d95 in DppKernelModel::gradient(std::vector<unsigned long, std::allocator<unsigned long> > const&, Eigen::Matrix<float, -1, -1, 1, -1, -1>*, float) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/DppKernelModel.h:81
+    #1 0x7f9f42e0bcf6 in DppKernelModel::update_param(std::vector<unsigned long, std::allocator<unsigned long> > const&, float, float) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/DppKernelModel.h:69
+    #2 0x7f9f42e0bcf6 in DppKernelModel::stochastic_train(std::vector<std::vector<unsigned long, std::allocator<unsigned long> >, std::allocator<std::vector<unsigned long, std::allocator<unsigned long> > > > const&, float, unsigned long, unsigned long) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/DppKernelModel.h:49
+    #3 0x7f9f42d7d14e in learnItemEmb(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, float, float, int, int) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/RDppLearnItemEmb.cpp:19
+    #4 0x7f9f42e1276c in _rDppDiversity_learnItemEmb /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/RcppExports.cpp:33
+    #5 0x55a77cec1ce7 in R_doDotCall /root/r_source/R-4.1.0/src/main/dotcode.c:614
+    #6 0x55a77cecaef7 in do_dotcall /root/r_source/R-4.1.0/src/main/dotcode.c:1281
+    #7 0x55a77cf81cf0 in bcEval /root/r_source/R-4.1.0/src/main/eval.c:7115
+    #8 0x55a77cfbdbe7 in Rf_eval /root/r_source/R-4.1.0/src/main/eval.c:727
+    #9 0x55a77cfc3699 in R_execClosure /root/r_source/R-4.1.0/src/main/eval.c:1897
+    #10 0x55a77cfc5f0c in Rf_applyClosure /root/r_source/R-4.1.0/src/main/eval.c:1823
+    #11 0x55a77cfbe08b in Rf_eval /root/r_source/R-4.1.0/src/main/eval.c:850
+    #12 0x55a77d044535 in Rf_ReplIteration /root/r_source/R-4.1.0/src/main/main.c:264
+    #13 0x55a77d044535 in Rf_ReplIteration /root/r_source/R-4.1.0/src/main/main.c:200
+    #14 0x55a77d044cd0 in R_ReplConsole /root/r_source/R-4.1.0/src/main/main.c:314
+    #15 0x55a77d044e59 in run_Rmainloop /root/r_source/R-4.1.0/src/main/main.c:1117
+    #16 0x55a77d044eb6 in Rf_mainloop /root/r_source/R-4.1.0/src/main/main.c:1124
+    #17 0x55a77cd4abc1 in main /root/r_source/R-4.1.0/src/main/Rmain.c:29
+    #18 0x7f9f4c4940b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+    #19 0x55a77cd4d33d in _start (/root/r_source/R-4.1.0/bin/exec/R+0x12f33d)
+
+0x606000003894 is located 0 bytes to the right of 52-byte region [0x606000003860,0x606000003894)
+allocated by thread T0 here:
+    #0 0x7f9f4ca3dbc8 in malloc (/lib/x86_64-linux-gnu/libasan.so.5+0x10dbc8)
+    #1 0x7f9f42d88cbd in Eigen::internal::handmade_aligned_malloc(unsigned long) deps/eigen-3.3.9/Eigen/src/Core/util/Memory.h:88
+    #2 0x7f9f42d88cbd in Eigen::internal::aligned_malloc(unsigned long) deps/eigen-3.3.9/Eigen/src/Core/util/Memory.h:164
+    #3 0x7f9f42d88cbd in void* Eigen::internal::conditional_aligned_malloc<true>(unsigned long) deps/eigen-3.3.9/Eigen/src/Core/util/Memory.h:214
+    #4 0x7f9f42d88cbd in float* Eigen::internal::conditional_aligned_new_auto<float, true>(unsigned long) deps/eigen-3.3.9/Eigen/src/Core/util/Memory.h:374
+    #5 0x7f9f42d88cbd in Eigen::DenseStorage<float, -1, -1, -1, 1>::resize(long, long, long) deps/eigen-3.3.9/Eigen/src/Core/DenseStorage.h:408
+    #6 0x7f9f42d88cbd in Eigen::PlainObjectBase<Eigen::Matrix<float, -1, -1, 1, -1, -1> >::resize(long, long) deps/eigen-3.3.9/Eigen/src/Core/PlainObjectBase.h:293
+    #7 0x7f9f42d88cbd in void Eigen::PlainObjectBase<Eigen::Matrix<float, -1, -1, 1, -1, -1> >::_init2<unsigned long, unsigned long>(long, long, Eigen::internal::enable_if<true, unsigned long>::type*) deps/eigen-3.3.9/Eigen/src/Core/PlainObjectBase.h:745
+    #8 0x7f9f42d88cbd in Eigen::Matrix<float, -1, -1, 1, -1, -1>::Matrix<unsigned long, unsigned long>(unsigned long const&, unsigned long const&) deps/eigen-3.3.9/Eigen/src/Core/Matrix.h:302
+    #9 0x7f9f42d88cbd in DppKernelModel::DppKernelModel(unsigned long, unsigned long, float) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/DppKernelModel.h:27
+    #10 0x7f9f42d7d127 in learnItemEmb(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int, float, float, int, int) /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/RDppLearnItemEmb.cpp:18
+    #11 0x7f9f42e1276c in _rDppDiversity_learnItemEmb /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/RcppExports.cpp:33
+    #12 0x55a77cec1ce7 in R_doDotCall /root/r_source/R-4.1.0/src/main/dotcode.c:614
+    #13 0x55a77cecaef7 in do_dotcall /root/r_source/R-4.1.0/src/main/dotcode.c:1281
+    #14 0x55a77cf81cf0 in bcEval /root/r_source/R-4.1.0/src/main/eval.c:7115
+    #15 0x55a77cfbdbe7 in Rf_eval /root/r_source/R-4.1.0/src/main/eval.c:727
+    #16 0x55a77cfc3699 in R_execClosure /root/r_source/R-4.1.0/src/main/eval.c:1897
+    #17 0x55a77cfc5f0c in Rf_applyClosure /root/r_source/R-4.1.0/src/main/eval.c:1823
+    #18 0x55a77cfbe08b in Rf_eval /root/r_source/R-4.1.0/src/main/eval.c:850
+    #19 0x55a77d044535 in Rf_ReplIteration /root/r_source/R-4.1.0/src/main/main.c:264
+    #20 0x55a77d044535 in Rf_ReplIteration /root/r_source/R-4.1.0/src/main/main.c:200
+    #21 0x55a77d044cd0 in R_ReplConsole /root/r_source/R-4.1.0/src/main/main.c:314
+    #22 0x55a77d044e59 in run_Rmainloop /root/r_source/R-4.1.0/src/main/main.c:1117
+    #23 0x55a77d044eb6 in Rf_mainloop /root/r_source/R-4.1.0/src/main/main.c:1124
+    #24 0x55a77cd4abc1 in main /root/r_source/R-4.1.0/src/main/Rmain.c:29
+    #25 0x7f9f4c4940b2 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x270b2)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /root/r_source/R-4.1.0/bin/rDppDiversity.Rcheck/00_pkg_src/rDppDiversity/src/DppKernelModel.h:81 in DppKernelModel::gradient(std::vector<unsigned long, std::allocator<unsigned long> > const&, Eigen::Matrix<float, -1, -1, 1, -1, -1>*, float)
+Shadow bytes around the buggy address:
+  0x0c0c7fff86c0: fa fa fa fa fd fd fd fd fd fd fd fa fa fa fa fa
+  0x0c0c7fff86d0: fd fd fd fd fd fd fd fd fa fa fa fa fd fd fd fd
+  0x0c0c7fff86e0: fd fd fd fa fa fa fa fa fd fd fd fd fd fd fd fa
+  0x0c0c7fff86f0: fa fa fa fa fd fd fd fd fd fd fd fd fa fa fa fa
+  0x0c0c7fff8700: fd fd fd fd fd fd fd fa fa fa fa fa 00 00 00 00
+=>0x0c0c7fff8710: 00 00[04]fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8720: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8730: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8740: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8750: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8760: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==209851==ABORTING
