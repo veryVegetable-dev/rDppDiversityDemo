@@ -1,0 +1,99 @@
+R version 4.1.0 (2021-05-18) -- "Camp Pontanezen"
+Copyright (C) 2021 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "rDppDiversity"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('rDppDiversity')
+>
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("bestSubset")
+> ### * bestSubset
+>
+> flush(stderr()); flush(stdout())
+>
+> ### Name: bestSubset
+> ### Title: Given item set, item representation vector, and item ratings,
+> ###   find a subset with better relevance-diversity trade-off.
+> ### Aliases: bestSubset
+>
+> ### ** Examples
+>
+> library(rDppDiversity)
+> bestSubset(matrix(c(-0.1, -0.15, 0.2, 0.3, -0.2, -0.3), nrow=3, ncol=2, byrow=TRUE), c(1, 2, 3), 3)
+  id      gain
+1  2 0.1570038
+>
+>
+>
+> cleanEx()
+> nameEx("learnItemEmb")
+> ### * learnItemEmb
+>
+> flush(stderr()); flush(stdout())
+>
+> ### Name: learnItemEmb
+> ### Title: Machine learning algorithm to learn item representations
+> ###   maximizing log likelihood under DPP assumption.
+> ### Aliases: learnItemEmb
+>
+> ### ** Examples
+>
+> library(rDppDiversity)
+> data_path=system.file("extdata", "data.txt", package = "rDppDiversity")
+> learnItemEmb(data_path, 3, 0.1, 0.01, 0, 10)
+[[1]]
+           [,1]       [,2]       [,3]
+[1,] -0.1308061 -0.4400499  1.0258933
+[2,]  0.9694823  1.8859018 -1.9014586
+[3,]  0.8319698 -0.6737472  0.7776279
+
+[[2]]
+[1] "0" "1" "2"
+
+[[3]]
+ [1] -0.2340580  0.4069624  0.6289018  0.7460149  0.8211536  0.6668140
+ [7]  0.7443050  0.8053603  0.8554372  0.8978102  0.8182546  0.8638702
+[13]  0.9041882  0.9403316  0.9731247  0.9216131  0.9566814  0.9890403
+[19]  1.0191098  1.0472264  1.0104078  1.0402156  1.0683224  1.0949358
+[25]  1.1202297  1.0924579  1.1190822  1.1445093  1.1688592  1.1922362
+[31]  1.1705984  1.1950666  1.2186291  1.2413629  1.2633367  1.2461345
+[37]  1.2690312  1.2912085  1.3127193  1.3336120  1.3197694  1.3414609
+[43]  1.3625604  1.3831067  1.4031348  1.3919266  1.4126592  1.4328915
+[49]  1.4526531  1.4719708
+
+>
+>
+>
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.411 0.016 0.428 0 0
+> grDevices::dev.off()
+null device
+          1
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
